@@ -17,8 +17,8 @@ See [example_data.xlsx](https://github.com/wjcshine/PIFI/blob/main/example_data.
 
 The output contains PIF-i and/or PIF-c. Detailed information regarding each indicator can be found at https://doi.org/10.1210/clinem/dgaf372.
 
-Author: Jiachen Wang  
-[ORCID](https://orcid.org/0009-0003-8232-8500)  
+Author: [Jiachen Wang](https://orcid.org/0009-0003-8232-8500)  
+Email：wjcshine@foxmail.com  
 
 Collaborators: Tao Yang, Qi Fu; Hao Dai  
 
