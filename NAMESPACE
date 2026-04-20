@@ -2,5 +2,7 @@
 
 export(PIFI)
 importFrom(dplyr,"%>%")
+importFrom(dplyr,mutate)
+importFrom(dplyr,select)
 importFrom(readxl,read_excel)
 importFrom(writexl,write_xlsx)
