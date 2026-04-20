@@ -12,3 +12,14 @@ A, 0 min; B, 30 min; C, 60 min; D, 120 min; E, 180 min
 Height, unit: cm  
 Age, unit: years  
 Sex, Male = 1, Female = 2  
+
+See example_data.xlsx for an example of the data format.
+
+The output contains PIF-i and/or PIF-c. Detailed information regarding each indicator can be found at https://doi.org/10.1210/clinem/dgaf372.
+
+Author: Jiachen Wang
+ORCID: (https://orcid.org/0009-0003-8232-8500)
+
+Collaborators: Tao Yang, Qi Fu; Hao Dai
+
+Special thanks to Grace Xu for valuable suggestions
