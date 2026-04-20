@@ -1,0 +1,47 @@
+PIFI_5point_INS=function(data){
+data$I.G0=data$INS_A/data$GLU_A
+data$I.G30=data$INS_B/data$GLU_B
+data$I.G60=data$INS_C/data$GLU_C
+data$I.G120=data$INS_D/data$GLU_D
+data$I.G180=data$INS_E/data$GLU_E
+
+data$top_INS=NA
+data$top.time_INS=NA
+for (i in c(1:nrow(data))){
+  data$top_INS[i]=max(data$INS_A[i],data$INS_B[i],data$INS_C[i],data$INS_D[i],data$INS_E[i])
+  data$top.time_INS[i]=which.max(c(data$INS_A[i],data$INS_B[i],data$INS_C[i],data$INS_D[i],data$INS_E[i]))
+}
+data=mutate(data,top.time_INS=case_when(
+  top.time_INS=="1"~0,
+  top.time_INS=="2"~30,
+  top.time_INS=="3"~60,
+  top.time_INS=="4"~120,
+  top.time_INS=="5"~180))
+data$slope_INS=(data$top_INS/data$INS_A)/data$top.time_INS
+
+data$top_INS_G=NA
+for (i in 1:nrow(data)){
+  if(data$top.time_INS[i]==0){
+    data$top_INS_G[i]=data$top_INS[i]/data$GLU_A[i]}
+  if(data$top.time_INS[i]==30){
+    data$top_INS_G[i]=data$top_INS[i]/data$GLU_B[i]}
+  if(data$top.time_INS[i]==60){
+    data$top_INS_G[i]=data$top_INS[i]/data$GLU_C[i]}
+  if(data$top.time_INS[i]==120){
+    data$top_INS_G[i]=data$top_INS[i]/data$GLU_D[i]}
+  if(data$top.time_INS[i]==180){
+    data$top_INS_G[i]=data$top_INS[i]/data$GLU_E[i]}
+}
+
+data$INS0_G0=49.581407-0.17694468*data$Height+2.3510618*10^(-05)*pmax(data$Height-153.5,0)^3-3.7074437*10^(-05)*pmax(data$Height-161,0)^3+1.3563818*10^(-05)*pmax(data$Height-174,0)^3+0.20585482*data$Sex-0.1964067*data$Age
+
+data$INSpeak_G=204.92695-0.4510658*data$Height-0.00082239612*pmax(data$Height-153.5,0)^3+0.0012968554*pmax(data$Height-161,0)^3-0.0004744593*pmax(data$Height-174,0)^3+4.2056024*data$Sex-1.6153067*data$Age
+
+data$`PIF-Si`=data$I.G0/data$INS0_G0*100
+data$`PIF-Li`=data$top_INS_G/data$INSpeak_G*100
+data$`PIF-Ai`=data$slope_INS/0.1769442*100
+
+data=select(data,-I.G0,-I.G30,-I.G60,-I.G120,-I.G180,
+            -top_INS,-top.time_INS,-slope_INS,-top_INS_G,
+            -INS0_G0,-INSpeak_G)
+}
