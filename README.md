@@ -13,7 +13,7 @@ Height, unit: cm
 Age, unit: years  
 Sex, Male = 1, Female = 2  
 
-See example_data.xlsx for an example of the data format.
+See [example_data.xlsx](https://github.com/wjcshine/PIFI/blob/main/example_data.xlsx) for an example of the data format.
 
 The output contains PIF-i and/or PIF-c. Detailed information regarding each indicator can be found at https://doi.org/10.1210/clinem/dgaf372.
 
