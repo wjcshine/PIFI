@@ -45,6 +45,8 @@ The minimum supported data volume is as follows:
 | 3 POINT METHOD B | √ | √ | √ | √ | | √ | √ | | √ | √ | √ | √ | √ | | | | | |
 | 3 POINT METHOD B | √ | √ | √ | √ | | √ | √ | | | | | | | √ | | √ | √ | |
 
+<b>Please ensure that the data contains only one of the types shown above, otherwise it may cause model errors.</b>  
+
 ### STEP
 ```R
 ##install.packages("devtools")
@@ -52,7 +54,6 @@ The minimum supported data volume is as follows:
 ##install.packages("readxl")
 devtools::install_github("wjcshine/PIFI")
 library(PIFI)
-library(dplyr)
 library(readxl)
 
 df=read_xlsx("example_data.xlsx")
