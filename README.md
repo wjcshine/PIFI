@@ -44,3 +44,17 @@ The minimum supported data volume is as follows:
 | 3 POINT METHOD B | √ | √ | √ | √ | | √ | √ | | √ | | √ | √ | | √ | | √ | √ | |
 | 3 POINT METHOD B | √ | √ | √ | √ | | √ | √ | | √ | √ | √ | √ | √ | | | | | |
 | 3 POINT METHOD B | √ | √ | √ | √ | | √ | √ | | | | | | | √ | | √ | √ | |
+
+### STEP
+```R
+##install.packages("devtools")
+##install.packages("dplyr")
+##install.packages("readxl")
+devtools::install_github("wjcshine/PIFI")
+library(PIFI)
+library(dplyr)
+library(readxl)
+
+df=read_xlsx("example_data.xlsx")
+df_PIFI=PIFI::PIFI(df)
+```
