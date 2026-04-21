@@ -8,7 +8,7 @@
 #'
 #'cite:Fu Q, Dai H, Wang J, et al. Multidimensional Pancreatic Islet β-cell Function Assessment Improves Predictive Effect of Diabetes Risk Scores. J Clin Endocrinol Metab. 2026;111(2):541-552.
 #'
-#' @param data A data frame containing glucose, insulin, and/or C-peptide measurements.
+#' @param df A data frame containing glucose, insulin, and/or C-peptide measurements.
 #'            Column names must follow the standard naming convention (e.g., GLU_A, INS_B, CP_C).
 #'
 #' @return A data frame with calculated PIFI indices added as new columns.

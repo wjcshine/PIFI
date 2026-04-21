@@ -7,7 +7,7 @@
 PIFI(df)
 }
 \arguments{
-\item{data}{A data frame containing glucose, insulin, and/or C-peptide measurements.
+\item{df}{A data frame containing glucose, insulin, and/or C-peptide measurements.
 Column names must follow the standard naming convention (e.g., GLU_A, INS_B, CP_C).}
 }
 \value{
