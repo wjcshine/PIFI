@@ -1,9 +1,9 @@
-A convenient R package for calculating PIFI from the paper  
-[Multidimensional Pancreatic Islet β-cell Function Assessment Improves Predictive Effect of Diabetes Risk Scores](https://doi.org/10.1210/clinem/dgaf372)  
+<b>A convenient R package for calculating PIFI from the paper  
+[Multidimensional Pancreatic Islet β-cell Function Assessment Improves Predictive Effect of Diabetes Risk Scores](https://doi.org/10.1210/clinem/dgaf372)</b>   
   
 [Web-based calculator](https://multipif.com.cn/) (Simplified Chinese)
 
-Column Name Annotations  
+<b>Column Name Annotations</b>  
 INS, Insulin, unit: pmol/L  
 CP, C-peptide, unit: pmol/L  
 GLU, Blood glucose, unit: mmol/L  
@@ -17,7 +17,7 @@ See [example_data.xlsx](https://github.com/wjcshine/PIFI/blob/main/example_data.
 
 The output contains PIF-i and/or PIF-c. Detailed information regarding each indicator can be found at https://doi.org/10.1210/clinem/dgaf372.
 
-Author: [Jiachen Wang](https://orcid.org/0009-0003-8232-8500)  
+<b>Author: [Jiachen Wang](https://orcid.org/0009-0003-8232-8500)</b>  
 Email：wjcshine@foxmail.com  
 
 Collaborators:  ProfessTao Yang, Qi Fu, Hao Dai  
