@@ -12,7 +12,7 @@ PIFI_3point_CP1=function(data){
   data=mutate(data,top.time_CP=case_when(
     top.time_CP=="1"~0,
     top.time_CP=="2"~30,
-    top.time_CP=="4"~120))
+    top.time_CP=="3"~120))
   data$slope_CP=(data$top_CP/data$CP_A)/data$top.time_CP
 
   data$top_CP_G=NA

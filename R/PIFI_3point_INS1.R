@@ -27,7 +27,7 @@ for (i in 1:nrow(data)){
 
 data$INS0_G0=49.581407-0.17694468* data$Height+2.3510618e-05*pmax(data$Height-153.5,0)^3-3.7074437e-05*pmax(data$Height-161,0)^3+1.3563818e-05*pmax(data$Height-174,0)^3+0.20585482*data$Sex-0.1964067*data$Age
 
-data$INSpeak_G=158.36058-0.25161952* data$Height-0.0011258718*pmax(data$Height-153.5,0)^3+0.0017754132*pmax(data$Height-161,0)^3-0.0006495414*pmax(data$Height-174,0)^3+3.9419737*Sex-1.4274988*data$Age
+data$INSpeak_G=158.36058-0.25161952* data$Height-0.0011258718*pmax(data$Height-153.5,0)^3+0.0017754132*pmax(data$Height-161,0)^3-0.0006495414*pmax(data$Height-174,0)^3+3.9419737*data$Sex-1.4274988*data$Age
 
 data$`PIF-Si`=data$I.G0/data$INS0_G0*100
 data$`PIF-Li`=data$top_INS_G/data$INSpeak_G*100

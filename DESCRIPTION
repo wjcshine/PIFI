@@ -1,15 +1,13 @@
 Package: PIFI
 Title: Pancreatic Islet Function Index Calculator
-Version: 1.0.1
+Version: 1.0.3
 Authors@R: 
     person("JIACHEN", "WANG", , "wjcshine@foxmail.com", role = c("aut", "cre"))
 Description: Calculate Pancreatic Islet Function Index from OGTT data with
     various time point combinations.
 License: MIT + file LICENSE
 Imports: 
-    dplyr,
-    readxl,
-    writexl
+    dplyr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

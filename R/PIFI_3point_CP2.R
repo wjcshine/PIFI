@@ -29,7 +29,7 @@ for (i in 1:nrow(data)){
 
 data$C_P0_G0=132.55716+0.10226667*data$Height-0.0025872043*pmax(data$Height-153.5,0)^3+0.0040798222*pmax(data$Height-161,0)^3-0.0014926179*pmax(data$Height-174,0)^3+4.8396695*data$Sex-0.88537434*data$Age
 
-data$C_Ppeak_G=132.55716+0.10226667* data$Height-0.0025872043*pmax(data$Height-153.5,0)^3+0.0040798222*pmax(data$Height-161,0)^3-0.0014926179*pmax(data$Height-174,0)^3+4.8396695*data$Sex-0.88537434*data$Age
+data$C_Ppeak_G=2320.2632-11.495291* data$Height+0.062905403*pmax(data$Height-151.85,0)^3-0.16428528*pmax(data$Height-158.5,0)^3+0.11588005*pmax(data$Height-164.55,0)^3-0.014500171*pmax(data$Height-178,0)^3+15.521258*data$Sex-3.1754725*data$Age
 
 data$`PIF-Sc`=data$C.G0/data$C_P0_G0*100
 data$`PIF-Lc`=data$top_CP_G/data$C_Ppeak_G*100
