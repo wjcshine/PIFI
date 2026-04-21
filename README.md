@@ -20,7 +20,7 @@ The output contains PIF-i and/or PIF-c. Detailed information regarding each indi
 <b>Author: [Jiachen Wang](https://orcid.org/0009-0003-8232-8500)</b>  
 Email：wjcshine@foxmail.com  
 
-Collaborators:  ProfessTao Yang, Qi Fu, Hao Dai  
+Collaborators: Professor Tao Yang, Professor Qi Fu, Hao Dai  
 
 Special thanks to Grace Xu for valuable suggestions
 
