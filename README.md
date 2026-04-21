@@ -1,7 +1,7 @@
-<b>A convenient R package for calculating PIFI from the paper  
-[Multidimensional Pancreatic Islet β-cell Function Assessment Improves Predictive Effect of Diabetes Risk Scores](https://doi.org/10.1210/clinem/dgaf372)</b>   
+### A convenient R package for calculating PIFI 
+from the paper [Multidimensional Pancreatic Islet β-cell Function Assessment Improves Predictive Effect of Diabetes Risk Scores](https://doi.org/10.1210/clinem/dgaf372)</b>   
   
-[Web-based calculator](https://multipif.com.cn/) (Simplified Chinese)
+#### Alt [Web-based calculator](https://multipif.com.cn/) (Simplified Chinese)
 
 <b>Column Name Annotations</b>  
 INS, Insulin, unit: pmol/L  
