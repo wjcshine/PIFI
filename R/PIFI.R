@@ -95,9 +95,9 @@ PIFI <- function(df) {
 
       # 播报删除信息
       if(length(rows_to_remove) > 0) {
-        message("删除了以下行: ", paste(rows_to_remove, collapse = ", "))
-        message("共删除了 ", length(rows_to_remove), " 行")
-        message("原因:超出适用范围")
+        message("Deleted the following lines: ", paste(rows_to_remove, collapse = ", "))
+        message("Total deleted ", length(rows_to_remove), " 行")
+        message("Reason: Outside the scope of application")
         df <- df[-rows_to_remove, ]
       }
     }

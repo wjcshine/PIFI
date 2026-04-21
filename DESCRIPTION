@@ -1,6 +1,6 @@
 Package: PIFI
 Title: Pancreatic Islet Function Index Calculator
-Version: 1.0.3
+Version: 1.1.0
 Authors@R: 
     person("JIACHEN", "WANG", , "wjcshine@foxmail.com", role = c("aut", "cre"))
 Description: Calculate Pancreatic Islet Function Index from OGTT data with
