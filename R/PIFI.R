@@ -6,7 +6,7 @@
 #' It automatically detects the available time points and selects the
 #' appropriate calculation method.
 #'
-#'cite:Fu Q, Dai H, Wang J, et al. Multidimensional Pancreatic Islet β-cell Function Assessment Improves Predictive Effect of Diabetes Risk Scores. J Clin Endocrinol Metab. 2026;111(2):541-552.
+#'cite: Fu Q, Dai H, Wang J, et al. Multidimensional Pancreatic Islet β-cell Function Assessment Improves Predictive Effect of Diabetes Risk Scores. J Clin Endocrinol Metab. 2026;111(2):541-552.
 #'
 #' @param df A data frame containing glucose, insulin, and/or C-peptide measurements.
 #'            Column names must follow the standard naming convention (e.g., GLU_A, INS_B, CP_C).
@@ -31,7 +31,7 @@
 #'   Sex = c(1,1),
 #'   Height = c(178,171)
 #' )
-#' result <- PIFI(data_5point)
+#' df_result <- PIFI(data_5point)
 #' }
 #'
 #' @importFrom dplyr %>%
@@ -40,10 +40,10 @@
 #' @importFrom dplyr case_when
 PIFI <- function(df) {
 
-  # 获取列名
+  # Obtain the column names
   colnames <- colnames(df)
 
-  # 定义各个时间点组合
+  # Define combinations of various time points
   base <- c("GLU_A","GLU_D")
   glucose_5 <- c("GLU_A", "GLU_B", "GLU_C", "GLU_D", "GLU_E")
   ins_5 <- c("INS_A", "INS_B", "INS_C", "INS_D", "INS_E")
@@ -55,10 +55,14 @@ PIFI <- function(df) {
   ins_3_2 <- c("INS_A", "INS_C", "INS_D")
   cp_3_2 <- c("CP_A", "CP_C", "CP_D")
 
-  # 检查基础要求
+
+  contained <- paste(colnames[colnames %in% c("Height","Age","Sex",glucose_5,ins_5,cp_5)], collapse = ",")
+  # Check the basic requirements
   if (!all(base %in% colnames)) {
-    stop("The data does not meet the minimum requirements for calculation.Please check the column names or verify the input data.")
+    if(contained==""){contained="NONE!"}
+    stop(paste0("The data does not meet the minimum requirements for calculation.Please check the column names or verify the input data.\n","COL contained: ",contained))
   }
+  message("COL contained: ",contained)
   memory_Age=df$Age
   memory_Height=df$Height
   df=df %>%mutate(Age=case_when(Age<18~18,
@@ -67,17 +71,19 @@ PIFI <- function(df) {
                   Height=case_when(Height<155~155,
                                    Height>180~180,
                                    T~Height))
-  # 根据可用列选择计算方法
+  # Select the calculation method based on available columns
   if (all(glucose_5 %in% colnames)) {
+    message("Using 5 Point method...")
+    Sys.sleep(4)
     if (all(ins_5 %in% colnames)) {
-      # 调用5点胰岛素计算方法
+      # Invoke the 5-point insulin calculation method
       df=PIFI_5point_INS(df)
     }
     if (all(cp_5 %in% colnames)) {
-      # 调用5点C肽计算方法
+      # Invoke the 5-point C-peptide calculation method
       df=PIFI_5point_CP(df)
     }
-    message("DONE! Use 5 Point method!")
+    message("DONE!")
     df$Age=memory_Age
     df$Height=memory_Height
     conditions <- c()
@@ -88,29 +94,32 @@ PIFI <- function(df) {
     if("PIF-Lc" %in% names(df)) conditions <- c(conditions, "`PIF-Lc` < 0")
     if("PIF-Ac" %in% names(df)) conditions <- c(conditions, "`PIF-Ac` < 0")
 
-    # 合并条件并找出要删除的行
+    # Merge conditions and identify the rows to be deleted
     if(length(conditions) > 0) {
       full_condition <- paste(conditions, collapse = " | ")
       rows_to_remove <- which(eval(parse(text = full_condition), envir = df))
 
-      # 播报删除信息
+      # Broadcast the deletion details
       if(length(rows_to_remove) > 0) {
         message("Deleted the following lines: ", paste(rows_to_remove, collapse = ", "))
-        message("Total deleted ", length(rows_to_remove), " 行")
+        message("Total deleted ", length(rows_to_remove), " rows")
         message("Reason: Outside the scope of application")
         df <- df[-rows_to_remove, ]
       }
     }
     return(df)
   } else if (all(glucose_3_1 %in% colnames)) {
+    message("Using 3 Point method A...")
+    Sys.sleep(4)
     if (all(ins_3_1 %in% colnames)) {
-      # 调用3点胰岛素计算方法1
+      # Invoke the 3-point insulin calculation method A
       df=PIFI_3point_INS1(df)
     }
     if (all(cp_3_1 %in% colnames)) {
-      # 调用3点C肽计算方法1
+      # Invoke the 3-point C-peptide calculation method A
       df=PIFI_3point_CP1(df)
-      message("DONE! Use 3 Point method A!")
+    }
+      message("DONE!")
       df$Age=memory_Age
       df$Height=memory_Height
       conditions <- c()
@@ -121,30 +130,32 @@ PIFI <- function(df) {
       if("PIF-Lc" %in% names(df)) conditions <- c(conditions, "`PIF-Lc` < 0")
       if("PIF-Ac" %in% names(df)) conditions <- c(conditions, "`PIF-Ac` < 0")
 
-      # 合并条件并找出要删除的行
+      # Merge conditions and identify the rows to be deleted
       if(length(conditions) > 0) {
         full_condition <- paste(conditions, collapse = " | ")
         rows_to_remove <- which(eval(parse(text = full_condition), envir = df))
 
-        # 播报删除信息
+        # Broadcast the deletion details
         if(length(rows_to_remove) > 0) {
-          message("删除了以下行: ", paste(rows_to_remove, collapse = ", "))
-          message("共删除了 ", length(rows_to_remove), " 行")
-          message("原因:超出适用范围")
+          message("Deleted the following lines: ", paste(rows_to_remove, collapse = ", "))
+          message("Total deleted ", length(rows_to_remove), "rows")
+          message("Reason: Outside the scope of application")
           df <- df[-rows_to_remove, ]
         }
       }
       return(df)
-    }
-  } else if (all(glucose_3_2 %in% colnames)) {
-    if (all(ins_3_2 %in% colnames)) {
+    } else if (all(glucose_3_2 %in% colnames)) {
+      message("Using 3 Point method B...")
+      Sys.sleep(4)
+      if (all(ins_3_2 %in% colnames)) {
       # 调用3点胰岛素计算方法2
       df=PIFI_3point_INS2(df)
-    }
-    if (all(cp_3_2 %in% colnames)) {
+      }
+     if (all(cp_3_2 %in% colnames)) {
       # 调用3点C肽计算方法2
       df=PIFI_3point_CP2(df)
-      message("DONE! Use 3 Point method B!")
+      }
+      message("DONE!")
       df$Age=memory_Age
       df$Height=memory_Height
       conditions <- c()
@@ -155,22 +166,21 @@ PIFI <- function(df) {
       if("PIF-Lc" %in% names(df)) conditions <- c(conditions, "`PIF-Lc` < 0")
       if("PIF-Ac" %in% names(df)) conditions <- c(conditions, "`PIF-Ac` < 0")
 
-      # 合并条件并找出要删除的行
+      # Merge conditions and identify the rows to be deleted
       if(length(conditions) > 0) {
         full_condition <- paste(conditions, collapse = " | ")
         rows_to_remove <- which(eval(parse(text = full_condition), envir = df))
 
-        # 播报删除信息
+        # Broadcast the deletion details
         if(length(rows_to_remove) > 0) {
-          message("删除了以下行: ", paste(rows_to_remove, collapse = ", "))
-          message("共删除了 ", length(rows_to_remove), " 行")
-          message("原因:超出适用范围")
+          message("Deleted the following lines: ", paste(rows_to_remove, collapse = ", "))
+          message("Total deleted ", length(rows_to_remove), "rows")
+          message("Reason: Outside the scope of application")
           df <- df[-rows_to_remove, ]
         }
       }
       return(df)
-    }
-  } else {
+    } else {
     stop("No suitable calculation method found. Please ensure the data includes blood glucose, insulin, and C-peptide values for at least 0, 30/60, and 120 minutes.")
   }
 }
