@@ -1,17 +1,17 @@
-### A convenient R package for calculating PIFI 
+### A Convenient R Package for Calculating PIFI 
 from the paper [Multidimensional Pancreatic Islet β-cell Function Assessment Improves Predictive Effect of Diabetes Risk Scores](https://doi.org/10.1210/clinem/dgaf372)</b>   
   
 #### Alt [Web-based calculator](https://multipif.com.cn/) (Simplified Chinese)
 
 <b>Column Name Annotations</b>  
-INS, Insulin, unit: pmol/L  
-CP, C-peptide, unit: pmol/L  
-GLU, Blood glucose, unit: mmol/L  
+<b>INS</b>, Insulin, unit: pmol/L  
+<b>CP</b>, C-peptide, unit: pmol/L  
+<b>GLU</b>, Blood glucose, unit: mmol/L  
 A, 0 min; B, 30 min; C, 60 min; D, 120 min; E, 180 min  
 
-Height, unit: cm  
-Age, unit: years  
-Sex, Male = 1, Female = 2  
+<b>Height</b>, unit: cm  
+<b>Age</b>, unit: years  
+<b>Sex</b>, Male = 1, Female = 2  
 
 See [example_data.xlsx](https://github.com/wjcshine/PIFI/blob/main/example_data.xlsx) for an example of the data format.
 
@@ -25,7 +25,7 @@ Collaborators: Professor Tao Yang, Professor Qi Fu, Hao Dai
 Special thanks to Grace Xu for valuable suggestions
 
 
-<b>Example Data</b>
+### Example Data
 | ID | Age | Sex | Height | GLU_A | GLU_B | GLU_C | GLU_D | GLU_E | INS_A | INS_B | INS_C | INS_D | INS_E | CP_A | CP_B | CP_C | CP_D | CP_E |
 |----|-----|-----|--------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|------|------|------|------|------|
 | 1 | 54 | 1 | 178 | 5.79 | 11.06 | 14.65 | 19.08 | 18.07 | 40.5 | 46.2 | 90.14 | 126 | 116.1 | 665.5 | 592 | 801.6 | 1312 | 1537 |
@@ -47,15 +47,21 @@ The minimum supported data volume is as follows:
 
 <b>Please ensure that the data contains only one of the types shown above, otherwise it may cause model errors.</b>  
 
-### STEP
+### Example Steps
 ```R
+###Load the required packages
 ##install.packages("devtools")
 ##install.packages("dplyr")
 ##install.packages("readxl")
+
+###Install the PIFI package
 devtools::install_github("wjcshine/PIFI")
 library(PIFI)
 library(readxl)
 
+###Import File 'example_data.xlsx'
 df=read_xlsx("example_data.xlsx")
-df_PIFI=PIFI::PIFI(df)
+
+###Get the PIFI result
+df_result=PIFI::PIFI(df)
 ```
